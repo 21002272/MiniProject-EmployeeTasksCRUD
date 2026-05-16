@@ -16,7 +16,7 @@ app.register_blueprint(tasks_bp)
 
 @app.route("/")
 def home():
-    return {"message": "Employee Task Management System API is running"}
+    return {"message": "Employee Task Management System"}
 
 if __name__ == "__main__":
     with app.app_context():

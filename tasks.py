@@ -20,6 +20,14 @@ def get_tasks():
         return jsonify({"message": "No tasks found"})
     return jsonify({"message": "Tasks retrieved successfully", "tasks": [t.to_dict() for t in tasks]})
 
+@tasks_bp.route("/tasks/<int:id>", methods=["GET"])
+def get_task(id):
+    task = Task.query.get_or_404(id)
+    return jsonify({
+        "message": "Task retrieved successfully",
+        "task": task.to_dict()
+    })
+
 @tasks_bp.route("/tasks/<int:id>", methods=["PUT"])
 def update_task(id):
     task = Task.query.get_or_404(id)

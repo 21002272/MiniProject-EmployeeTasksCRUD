@@ -20,6 +20,14 @@ def get_employees():
         return jsonify({"message": "No employees found"})
     return jsonify({"message": "Employees retrieved successfully", "employees": [e.to_dict() for e in employees]})
 
+@employees_bp.route("/employees/<int:id>", methods=["GET"])
+def get_employee(id):
+    employee = Employee.query.get_or_404(id)
+    return jsonify({
+        "message": "Employee retrieved successfully",
+        "employee": employee.to_dict()
+    })
+
 @employees_bp.route("/employees/<int:id>", methods=["PUT"])
 def update_employee(id):
     employee = Employee.query.get_or_404(id)
